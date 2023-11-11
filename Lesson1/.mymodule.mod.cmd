@@ -1,1 +1,0 @@
-savedcmd_/home/vinicius/Desktop/LinuxDriverLearning/Lesson1/mymodule.mod := printf '%s\n'   mymodule.o | awk '!x[$$0]++ { print("/home/vinicius/Desktop/LinuxDriverLearning/Lesson1/"$$0) }' > /home/vinicius/Desktop/LinuxDriverLearning/Lesson1/mymodule.mod
