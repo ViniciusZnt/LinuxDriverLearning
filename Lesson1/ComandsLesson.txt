@@ -1,0 +1,8 @@
+uname -r = Comando para buscar versão atual da distro
+make = executa o makefile com o script para buildar o codigo, o mais 
+importante criado é o .ko (kernel module)
+insmod mymodule.ko = insert module para o kernel
+lsmod = list modules
+dsmeg = exibe as mensagens do kernel
+dsmeg | tail = pega as ultimas linhas do dsmeg
+rmmod = remove module,assim printando a mensagem
