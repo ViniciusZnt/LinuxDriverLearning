@@ -1,0 +1,14 @@
+ls -al /dev/tty* mostra os dispositivos da maquina e a proc/device tem os numeros dos dispositivos de bloco e de charactere, e como se conecta esses dispositivos com o driver de linux ou
+algo do tipo? 
+Com o número de dispositivo.
+No caso dos dispositivos da pasta dev,cada dispositvo tem um major device(Ele indica qual módulo de kernel é
+responsável pelo gerenciamento do dispositivo) e um minor device(O número minor do dispositivo identifica um 
+dispositivo específico gerenciado pelo driver associado ao número), quando voce quiser registrar ou alocar esse
+numero de dispositivo é necessario linkar, então se voce escrever um arquivo de dispositivo, tem que chamar a 
+função que registra o dispositivo no kernel e associa o número major e minor apropriado. Em sistemas baseados no kernel Linux, essa função é geralmente chamada de register_chrdev ou algo semelhante.
+
+Ao chamar essa função, você está informando ao kernel sobre a existência do seu dispositivo e associando-o a um driver específico identificado pelo número major. O número minor ajuda a distinguir entre dispositivos diferentes que podem ser gerenciados pelo mesmo driver.
+
+A função register_chrdev ou equivalente geralmente precisa de informações, como o nome do dispositivo, operações associadas ao dispositivo (como leitura, gravação, abertura, fechamento) e uma estrutura de arquivo que define essas operações.
+
+É uma parte crucial do desenvolvimento de drivers e módulos de kernel no Linux, pois estabelece a comunicação e gerenciamento adequados entre o kernel e o dispositivo.
