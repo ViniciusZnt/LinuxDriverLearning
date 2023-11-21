@@ -1,0 +1,1 @@
+savedcmd_/home/vinicius/Desktop/LinuxDriverLearning/Lesson2/Module.symvers :=  scripts/mod/modpost -m       -o /home/vinicius/Desktop/LinuxDriverLearning/Lesson2/Module.symvers -T /home/vinicius/Desktop/LinuxDriverLearning/Lesson2/modules.order -i Module.symvers -e 
