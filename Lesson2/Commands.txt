@@ -1,0 +1,2 @@
+mknod /dev/$namedevicedirectory c $majordevice $minordevice = cria um nó de dispositivo (device node)O mknod é 
+usado para criar esses arquivos especiais, que servem como interfaces para interação com dispositivos.
