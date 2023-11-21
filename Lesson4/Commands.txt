@@ -1,0 +1,64 @@
+head -n 1 : exibe a primeir linha de um arquivo
+static dev_t my_device_nr;
+Variável do tipo dev_t usada para armazenar o número do dispositivo (major e minor).
+
+static struct class *my_class;
+Um ponteiro para a estrutura da classe de dispositivo, representando uma classe de dispositivo no subsistema de classes do kernel.
+
+static struct cdev my_device;
+Uma estrutura cdev que representa o dispositivo de caractere.
+
+#define DRIVER_NAME "dummydriver" e #define DRIVER_CLASS "MyModuleClass"
+Macros definindo o nome do driver e o nome da classe associada ao dispositivo.
+
+static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, loff_t *offs)
+Função chamada para ler dados do dispositivo.
+
+static ssize_t driver_write(struct file *File, const char *user_buffer, size_t count, loff_t *offs)
+Função chamada para escrever dados no dispositivo.
+
+static int driver_open(struct inode *device_file, struct file *instance)
+Função chamada quando o arquivo do dispositivo é aberto.
+
+static int driver_close(struct inode *device_file, struct file *instance)
+Função chamada quando o arquivo do dispositivo é fechado.
+
+static struct file_operations fops = { .owner = THIS_MODULE, .open = driver_open, .release = driver_close, .read = driver_read, .write = driver_write };
+Estrutura file_operations que especifica as operações que podem ser realizadas no dispositivo, como abrir, fechar, ler e escrever.
+
+static int __init ModuleInit(void)
+Função chamada durante a inicialização do módulo. Aloca e registra o número do dispositivo, cria uma classe de dispositivo, cria um arquivo de dispositivo associado à classe e inicializa a estrutura cdev.
+
+static void __exit ModuleExit(void)
+Função chamada durante a saída do módulo. Desregistra e destrói o dispositivo, a classe e libera o número do dispositivo.
+
+module_init(ModuleInit) e module_exit(ModuleExit)
+Macros usadas para especificar as funções de inicialização e saída do módulo.
+
+printk
+A função printk é usada para imprimir mensagens no buffer de log do kernel. É uma versão do printf para o kernel.
+
+alloc_chrdev_region
+A função alloc_chrdev_region é usada para alocar um número de dispositivo (major e minor) dinamicamente. Ela é geralmente chamada durante a inicialização do módulo para solicitar um número de dispositivo ao kernel.
+
+class_create
+A função class_create é usada para criar uma classe de dispositivo no subsistema de classes do kernel. Classes de dispositivo são usadas para agrupar dispositivos relacionados.
+
+device_create
+A função device_create é usada para criar um arquivo de dispositivo associado à classe criada anteriormente. Ela cria um ponto de entrada no sistema de arquivos /dev para o dispositivo.
+
+
+cdev_init
+A função cdev_init é usada para inicializar a estrutura cdev. Essa estrutura é usada para representar um dispositivo de caractere no kernel.
+
+cdev_add
+A função cdev_add é usada para adicionar um dispositivo de caractere ao sistema. Isso informa ao kernel sobre a existência do dispositivo e permite que ele seja utilizado.
+
+device_destroy
+A função device_destroy é usada para destruir o arquivo de dispositivo criado anteriormente com device_create.
+
+class_destroy
+A função class_destroy é usada para destruir a classe de dispositivo criada anteriormente com class_create.
+
+unregister_chrdev_region
+A função unregister_chrdev_region é usada para liberar o número de dispositivo (major e minor) alocado anteriormente com alloc_chrdev_region.
