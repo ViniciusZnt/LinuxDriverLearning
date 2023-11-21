@@ -12,3 +12,31 @@ Ao chamar essa função, você está informando ao kernel sobre a existência do
 A função register_chrdev ou equivalente geralmente precisa de informações, como o nome do dispositivo, operações associadas ao dispositivo (como leitura, gravação, abertura, fechamento) e uma estrutura de arquivo que define essas operações.
 
 É uma parte crucial do desenvolvimento de drivers e módulos de kernel no Linux, pois estabelece a comunicação e gerenciamento adequados entre o kernel e o dispositivo.
+
+
+
+
+#include <linux/module.h>
+Esta linha inclui os cabeçalhos necessários para a criação de módulos do kernel Linux, incluindo funções e macros necessárias para a inicialização e saída do módulo.
+
+#include <linux/init.h>
+Inclui cabeçalhos necessários para a macro module_init e module_exit, que são usadas para especificar as funções de inicialização e saída do módulo.
+
+#include <linux/fs.h>
+Inclui cabeçalhos relacionados ao subsistema de sistema de arquivos do kernel, como estruturas e funções relacionadas a operações de E/S.
+
+#include <linux/cdev.h>
+Inclui cabeçalhos relacionados à infraestrutura de dispositivo de caractere no kernel, incluindo a estrutura cdev usada para representar um dispositivo de caractere.
+
+#include <linux/uaccess.h>
+Inclui cabeçalhos relacionados ao acesso seguro ao espaço do usuário, incluindo funções como copy_to_user e copy_from_user.
+
+
+MODULE_LICENSE("GPL")
+Macro usada para especificar a licença do módulo. Neste caso, o código está licenciado sob a Licença Pública Geral GNU (GPL).
+
+MODULE_AUTHOR("Johannes 4 GNU/Linux")
+Macro usada para especificar o autor do módulo.
+
+MODULE_DESCRIPTION("Registers a device nr. and implement some callback functions")
+Macro usada para fornecer uma descrição do módulo.
