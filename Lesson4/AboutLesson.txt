@@ -1,0 +1,19 @@
+A aula é basicamento o escopo de como sera o desenvolvimento de qualquer driver
+
+Este código é um exemplo básico de um módulo de kernel para o Linux. Quando você insere esse código no kernel usando o comando insmod, várias coisas acontecem:
+
+Alocação de Números de Dispositivos (Major e Minor): A função alloc_chrdev_region aloca um número de dispositivo para o driver. O número de dispositivo consiste em um número major e um número minor. O major geralmente identifica o
+ driver, enquanto o minor identifica um dispositivo específico associado ao driver.
+
+Criação da Classe do Dispositivo: A classe do dispositivo é criada usando a função class_create. A classe é uma maneira de agrupar dispositivos logicamente. No código, você usa THIS_MODULE como o dono da classe, que normalmente é o
+ módulo do kernel que está sendo executado.
+
+Criação do Arquivo de Dispositivo: A função device_create é usada para criar um arquivo de dispositivo associado ao número do dispositivo alocado. Isso cria um ponto de entrada no diretório /dev que pode ser usado para interagir com
+ o driver.
+
+Inicialização da Estrutura cdev e Adição ao Kernel: A estrutura cdev é inicializada usando cdev_init e associada às operações de arquivo (fops). A função cdev_add é usada para adicionar o dispositivo ao kernel.
+
+Se tudo ocorrer sem erros durante esse processo de inicialização, você verá mensagens de depuração (por meio de printk) indicando que o módulo foi carregado com sucesso.
+
+Depois de carregar o módulo, você pode interagir com ele por meio do arquivo de dispositivo criado em /dev. Por exemplo, você pode ler e escrever dados usando operações de leitura e gravação padrão em arquivos. Ao remover o módulo
+ usando o comando rmmod, a função ModuleExit será chamada, desalocando recursos e removendo o dispositivo do kernel.
